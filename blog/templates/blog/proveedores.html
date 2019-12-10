@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-lg-3">
+    <br>
+    <!--<h1 class="my-4">Home Sweet Home</h1>-->
+    <img class="card-img-top" src="{% static 'img/fotos/logo.jpeg' %}" alt="">
+    <br>
+    
+  </div>
+
+  <div class="col-lg-9">
+
+    <div class="row">
+        <div>
+          <h1 class="my-4">Nuestros Proveedores</h1>
+
+        </div>
+    </div>
+
+    <div class="row">
+      {% for prov in provs%}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="{{prov.image.url}}" alt=""></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="{% url 'proveedor_detail' pk=prov.pk %}">{{ prov.name }}</a>
+                </h4>
+                <p class="card-text">{{prov.text}}</p>
+            </div>
+            </div>
+        </div>
+      {% endfor %}
+      
+    </div>
+
+{% endblock %}
