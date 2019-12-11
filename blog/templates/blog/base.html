@@ -33,10 +33,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="nosotros.html">Nosotros</a>
+            <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contactanos.html">Contactanos</a>
+            <a class="nav-link" href="{% url 'contactanos' %}">Contactanos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'proveedores' %}">Proveedores</a>
@@ -52,7 +52,9 @@
             </div>
           </li>
           {% endif %}
-             
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+          </li>   
         </ul>
       </div>
     </div>
@@ -80,6 +82,7 @@
   
   </footer>
   <script src="{% static 'estilo/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'estilo/js/archivo.js' %}"></script>
   <script src="{% static 'estilo/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
