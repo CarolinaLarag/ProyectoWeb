@@ -123,3 +123,13 @@ def proveedor_edit(request, pk):
     else:
         form = ProveedorForm(instance=prov)
     return render(request, 'blog/proveedor_edit.html', {'form': form})
+
+def post_delete(request, id):
+    instancia = Post.objects.get(id=id)
+    instancia.delete()
+    return redirect('/')
+
+def proveedor_delete(request, id):
+    instancia = Proveedor.objects.get(id=id)
+    instancia.delete()
+    return redirect('/proveedores')
