@@ -7,7 +7,8 @@ from django.contrib.auth import logout as do_logout
 from django.contrib.auth import login as do_login
 from django.utils import timezone
 from .models import Post, Proveedor
-from .forms import PostForm, ProveedorForm
+from .forms import PostForm, ProveedorForm, SignUpForm
+
 
 
 # Create your views here.
@@ -34,11 +35,10 @@ def logout(request):
     return redirect('/')
 
 def register(request):
-    form = UserCreationForm()
+    form = SignUpForm()
     if request.method == "POST":
-        form = UserCreationForm(data=request.POST)
+        form = SignUpForm(data=request.POST)
         if form.is_valid():
-            
             user = form.save() 
             if user is not None:
                 do_login(request, user)

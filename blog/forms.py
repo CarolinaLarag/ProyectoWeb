@@ -1,5 +1,6 @@
 from django import forms
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Post, Proveedor
 
 class PostForm(forms.ModelForm):
@@ -34,3 +35,10 @@ class ProveedorForm(forms.ModelForm):
             'text' : forms.TextInput(attrs={ 'class': 'form-control'}),
             'image' : forms.FileInput(attrs={ 'class': 'class="form-control-file'}),
         }
+
+class SignUpForm(UserCreationForm):
+    # Ahora el campo username es de tipo email y cambiamos su texto
+    email = forms.EmailField(max_length=254, help_text='Requerido.')
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2', )
