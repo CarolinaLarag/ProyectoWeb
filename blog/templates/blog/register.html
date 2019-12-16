@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="{% static 'css/blog.css' %}" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="sidenav">
+    <div class="login-main-text">
+       <h2>Home Sweet Home</h2>
+       <h2>Registrar usuario</h2>
+    </div>
+ </div>
+
+ <div class="main">
+    <div class="col-md-6 col-sm-12">
+       <div class="login-form">
+        <form method="POST">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Registrar</button>
+        </form>
+        <a href="{% url 'index'%}">Iniciar sesión</a>
+       </div>
+    </div>
+ </div>

@@ -4,9 +4,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<!------ Include the above in your HEAD tag ---------->
 
-<div class="sidenav">
+      <div class="sidenav">
          <div class="login-main-text">
             <h2>Home Sweet Home</h2>
          
@@ -19,6 +18,8 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                   <button type="submit" class="btn btn-black">Login</button>
+                  <a href="{% url 'password_reset'%}">Olvide mi contraseña</a>
+                  <a href="/register">Registrar usuario</a>
                </form>
             </div>
          </div>

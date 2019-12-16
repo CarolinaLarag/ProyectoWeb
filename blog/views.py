@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as do_logout
 from django.contrib.auth import login as do_login
@@ -32,6 +33,18 @@ def logout(request):
     do_logout(request)
     return redirect('/')
 
+def register(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(data=request.POST)
+        if form.is_valid():
+            
+            user = form.save() 
+            if user is not None:
+                do_login(request, user)
+                return redirect('/login')
+    return render(request, "blog/register.html", {'form': form})  
+
 def index(request):
     if request.user.is_authenticated:
         posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -45,9 +58,6 @@ def nosotros(request):
 def contactanos(request):
     return render(request, 'blog/contactanos.html')
 
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
 
 def proveedores(request):
     provs = Proveedor.objects.all()
